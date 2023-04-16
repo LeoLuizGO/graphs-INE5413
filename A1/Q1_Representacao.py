@@ -1,4 +1,4 @@
-# Questão 1
+# Questão 1 
 
 class Graph():
     def __init__(self) -> None:
@@ -18,17 +18,20 @@ class Graph():
         for v in self.adjList.items():
             if v[1]['index'] == index:
                 return v[0]
-                
+    
+    def GetIndex(self, label: str) -> int:
+        return self.adjList[label]['index']
+    
     def GetNeighborhood(self, vertex: str) -> list:
         return list(self.adjList[vertex]['neighborhood'].keys()) 
     
-    def VerifyEdge(self,vertexU: str,vertexV: str) -> bool:
+    def VerifyEdge(self, vertexU: str, vertexV: str) -> bool:
         if vertexV in self.adjList[vertexU]['neighborhood']:
             return True
         else:
             return False
     
-    def GetWeight(self,vertexU: str,vertexV: str) -> float:
+    def GetWeight(self, vertexU: str, vertexV: str) -> float:
         try:
             weight = self.adjList[vertexU]['neighborhood'][vertexV]
         
@@ -37,7 +40,7 @@ class Graph():
             
         return weight
     
-    def read(self, file) -> None:
+    def Read(self, file) -> None:
         with open(file, 'r') as f:
             lines = f.readlines()
             n = int(lines[0].split()[1]) # numero de vertices
@@ -65,11 +68,13 @@ class Graph():
                 
 if __name__ == '__main__':
     g = Graph()
-    g.read('graph_test.txt')
+    g.Read('GraphTest2.txt')
+    print(g.adjList)
     print(g.GetVerticesQuantity())
     print(g.GetEdgesQuantity())
     print(g.GetDegree('a'))
+    print(g.GetIndex('c'))
     print(g.GetLabel(4))
     print(g.GetNeighborhood('c'))
     print(g.VerifyEdge('a','c'))
-    print(g.GetWeight('a','f'))
+    print(g.GetWeight('i','j'))
