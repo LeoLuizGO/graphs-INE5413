@@ -66,7 +66,6 @@ class Graph():
 if __name__ == '__main__':
     g = Graph()
     g.read('graph_test.txt')
-    print(g.adjList)
     print(g.GetVerticesQuantity())
     print(g.GetEdgesQuantity())
     print(g.GetDegree('a'))
