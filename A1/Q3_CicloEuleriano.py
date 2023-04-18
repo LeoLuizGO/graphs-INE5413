@@ -1,29 +1,55 @@
-#Questão 3
+# Questão 3
 
 from Q1_Representacao import Graph
 
+
+
 def CicloEuleriano(graph: Graph):
-    Ce = []
+    C = [] # Vetor de arestas visitadas
     i = False
     j = 0
 
-    for _ in range(graph.GetVerticesQuantity()):
-        Ce.append(False)
+    for _ in range(graph.GetEdgesQuantity()):
+        C.append(False)
 
     while i == False:
-        vertex = j
-        j += 1 
+        v = j  # Vertice arbitrario
+        j += 1
 
-        if graph.GetNeighborhood(graph.GetLabel(vertex)) != []:
+        # Escolha arbitraria do vertice que possui alguma aresta
+        if graph.GetNeighborhood(graph.GetLabel(v)) != []:
             i = True
         if j > graph.GetVerticesQuantity():
             return [False, None]
 
-    v, cycle = buscarSubcicloEuleriano(graph, vertex)
-    if v == False:
-        return [False, None]
-    else:
-        pass        
+    r, cycle = buscarSubcicloEuleriano(graph, v, C)
 
-def buscarSubcicloEuleriano(graph: Graph, ):
-    pass
+    if r == False:
+        return [False, None]
+
+    else:
+        condition = False
+
+        for edge in C:
+            if edge == False:
+                condition == True
+                break
+
+        if condition:
+            return (False, None)
+
+        else:
+            return (True, cycle)
+
+
+def buscarSubcicloEuleriano(graph: Graph, v: int, C: list) -> list:
+    cycle = [v] # Ciclo começando em v
+    t = v
+    
+    while True:
+        
+        
+        
+        if v == t:
+            break
+    
