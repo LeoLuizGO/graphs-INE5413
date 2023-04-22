@@ -1,6 +1,9 @@
+# Trabalho 1 - INE5413
+# Leonardo Luiz Gambalonga Alves de Oliveira (21201250)
+# Lucas Gusmão Valduga (21103505)
 # Questão 3
-from Q1_Representacao import Graph
 
+from Q1_Representacao import Graph
 
 def CicloEuleriano(graph: Graph):
     C = [] # Vetor de arestas visitadas

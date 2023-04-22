@@ -1,3 +1,6 @@
+# Trabalho 1 - INE5413
+# Leonardo Luiz Gambalonga Alves de Oliveira (21201250)
+# Lucas Gusmão Valduga (21103505)
 # Questão 4
 
 from Q1_Representacao import Graph
@@ -22,8 +25,7 @@ def BellmanFord(graph: Graph, s: int) -> tuple():
                 # se a distancia até o vizinho do vertice atual do laço for maior do que a distancia
                 # do vertice atual mais a aresta que leva a esse vizinho a condição é True
                 if D[graph.GetIndex(neighbor) - 1] > D[vertex-1] + graph.GetWeight(graph.GetLabel(vertex), neighbor):
-                    D[graph.GetIndex(neighbor) - 1] = D[vertex - 1] + \
-                        graph.GetWeight(graph.GetLabel(vertex), neighbor)
+                    D[graph.GetIndex(neighbor) - 1] = D[vertex - 1] + graph.GetWeight(graph.GetLabel(vertex), neighbor)
                     A[graph.GetIndex(neighbor) - 1] = vertex
 
     # Verificação de ciclos negativos
@@ -47,14 +49,16 @@ if __name__ == "__main__":
         print('\nGrafo 1 não tem ciclo negativo\n')
         print(f'D1 = {D1}')
         print(f'A1 = {A1}\n')
+
+        # Ajustando print no formato solicitado
         for i in range(1, g1.GetVerticesQuantity() + 1):
-                path = []
-                vertex = i
-                while vertex is not None:
-                    path.insert(0, vertex)
-                    vertex = A1[vertex - 1]
-                path_str = ','.join(str(v) for v in path)
-                print(f"{i}: {path_str}; d={D1[i-1]}")
+            path = []
+            vertex = i
+            while vertex is not None:
+                path.insert(0, vertex)
+                vertex = A1[vertex - 1]
+            path_str = ','.join(str(v) for v in path)
+            print(f"{i}: {path_str}; d={D1[i-1]}")
 
     else:
         print('\nGrafo 1 tem ciclo negativo\n')
@@ -63,14 +67,16 @@ if __name__ == "__main__":
         print("\nGrafo 2 não tem ciclo negativo\n")
         print(f'D2 = {D2}')
         print(f'A2 = {A2}\n')
+
+        # Ajustando print no formato solicitado
         for i in range(1, g2.GetVerticesQuantity() + 1):
-                path = []
-                vertex = i
-                while vertex is not None:
-                    path.insert(0, vertex)
-                    vertex = A2[vertex - 1]
-                path_str = ','.join(str(v) for v in path)
-                print(f"{i}: {path_str}; d={D2[i-1]}")
+            path = []
+            vertex = i
+            while vertex is not None:
+                path.insert(0, vertex)
+                vertex = A2[vertex - 1]
+            path_str = ','.join(str(v) for v in path)
+            print(f"{i}: {path_str}; d={D2[i-1]}")
 
     else:
         print('\nGrafo 2 tem ciclo negativo\n')
