@@ -13,7 +13,7 @@ def floydWarshall(graph: Graph) -> list:
             if i == j: 
                 D[i][j] = 0
             else:
-                D[i][j] = graph.GetWeight(graph.GetLafbel(i+1), graph.GetLabel(j+1))
+                D[i][j] = graph.GetWeight(graph.GetLabel(i+1), graph.GetLabel(j+1))
     for i in range(quantVertices):
         D = matrizFW(D, i, quantVertices)
     return D, quantVertices
