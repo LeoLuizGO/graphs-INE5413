@@ -20,8 +20,7 @@ def BellmanFord(graph: Graph, s: int) -> tuple():
     # Relaxamento
     for _ in range(graph.GetVerticesQuantity() - 1):
         for vertex in range(1, graph.GetVerticesQuantity() + 1):  # Vertice
-            # Vizinho
-            for neighbor in graph.GetNeighborhood(graph.GetLabel(vertex)):
+            for neighbor in graph.GetNeighborhood(graph.GetLabel(vertex)): # Vizinho
                 # se a distancia até o vizinho do vertice atual do laço for maior do que a distancia
                 # do vertice atual mais a aresta que leva a esse vizinho a condição é True
                 if D[graph.GetIndex(neighbor) - 1] > D[vertex-1] + graph.GetWeight(graph.GetLabel(vertex), neighbor):
