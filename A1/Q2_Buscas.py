@@ -7,9 +7,9 @@ from Q1_Representacao import Graph
 import queue
 
 def BuscaLargura(graph: Graph, s: int):
-    Cv = []
-    Dv = []
-    Av = []
+    Cv = [] # Vertices visitados
+    Dv = [] # Distancia em arestas para todos os vertices
+    Av = [] # Antecessor do vertice no caminho definido a partir de (s)
     
     # Configurando todos os vértices
     for i in range(graph.GetVerticesQuantity()):
