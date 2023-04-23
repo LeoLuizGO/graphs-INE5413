@@ -24,7 +24,6 @@ def CicloEuleriano(graph: Graph):
     cycle = buscarSubcicloEuleriano(graph, v, C)    #chama a função buscarsubciclo
 
     return [True, cycle]
-#falta verificação
 
 def buscarSubcicloEuleriano(graph: Graph, v: int, C: list) -> list:
     cycleS = [v] # Ciclo começando em v
