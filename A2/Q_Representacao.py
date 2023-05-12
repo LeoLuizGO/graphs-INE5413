@@ -6,7 +6,7 @@
 class Graph():
     def __init__(self) -> None:
         self.adjList = {} # lista de adjacencias
-        self.arcs = []
+        self.arcTrans = {}
         self.numEdges = 0
         self.directed = False
     
@@ -29,6 +29,9 @@ class Graph():
     
     def GetNeighborhood(self, vertex: str) -> list:
         return list(self.adjList[vertex]['neighborhood'].keys()) 
+    
+    def GetNeighborhoodTrans(self, vertex: str) -> list:
+        return list(self.arcTrans[vertex]['neighborhood'].keys())
     
     def VerifyEdge(self, vertexU: str, vertexV: str) -> bool:
         if vertexV in self.adjList[vertexU]['neighborhood']:
@@ -57,12 +60,14 @@ class Graph():
                 
                 # dicionario idenficado pelo rotulo do vertice, armazena sua vizinhança e seu index
                 self.adjList.update({vertexLabel: {'neighborhood': {} , 'index': i}})
+                self.arcTrans.update({vertexLabel: {'neighborhood': {} , 'index': i}})
             
             # Lendo arestas
             # Lendo array de linhas do arquivo a partir de n+2
             # n+2 = numero de vertices + linhas com "*vertices" "*arestas"
             if "*arcs" in lines[n+1]: 
                 self.directed = True
+
             for line in lines[n+2:]: #
                 self.numEdges += 1 # contando o numero de arestas
                 
@@ -71,9 +76,11 @@ class Graph():
                 
                 # dicionario de vizinhança, armazena o rotulo do vertice vizinho e o peso da aresta
                 self.adjList[vertexU]['neighborhood'].update({vertexV: weight}) 
-                self.adjList[vertexV]['neighborhood'].update({vertexU: weight})
-                if self.directed:
-                    self.arcs.append([vertexU, vertexV])
+                self.arcTrans[vertexV]['neighborhood'].update({vertexU: weight})
+
+                if not(self.directed):
+                    self.adjList[vertexV]['neighborhood'].update({vertexU: weight})
+
                 
 if __name__ == '__main__':
     g = Graph()
