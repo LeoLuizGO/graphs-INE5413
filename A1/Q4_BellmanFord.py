@@ -40,9 +40,9 @@ if __name__ == "__main__":
     g1 = Graph()
     g2 = Graph()
     g1.Read('fln_pequena.net')  # grafo sem ciclos negativos
-    g2.Read('GraphTest3.txt')  # grafo com ciclos negativos
+    # g2.Read('GraphTest3.txt')  # grafo com ciclos negativos
     cycle1, D1, A1 = BellmanFord(g1, 6)
-    cycle2, D2, A2 = BellmanFord(g2, 1)
+    # cycle2, D2, A2 = BellmanFord(g2, 1)
 
     if cycle1:
         print('\nGrafo 1 não tem ciclo negativo\n')
@@ -62,20 +62,20 @@ if __name__ == "__main__":
     else:
         print('\nGrafo 1 tem ciclo negativo\n')
 
-    if cycle2:
-        print("\nGrafo 2 não tem ciclo negativo\n")
-        print(f'D2 = {D2}')
-        print(f'A2 = {A2}\n')
+    # if cycle2:
+    #     print("\nGrafo 2 não tem ciclo negativo\n")
+    #     print(f'D2 = {D2}')
+    #     print(f'A2 = {A2}\n')
 
-        # Ajustando print no formato solicitado
-        for i in range(1, g2.GetVerticesQuantity() + 1):
-            path = []
-            vertex = i
-            while vertex is not None:
-                path.insert(0, vertex)
-                vertex = A2[vertex - 1]
-            path_str = ','.join(str(v) for v in path)
-            print(f"{i}: {path_str}; d={D2[i-1]}")
+    #     # Ajustando print no formato solicitado
+    #     for i in range(1, g2.GetVerticesQuantity() + 1):
+    #         path = []
+    #         vertex = i
+    #         while vertex is not None:
+    #             path.insert(0, vertex)
+    #             vertex = A2[vertex - 1]
+    #         path_str = ','.join(str(v) for v in path)
+    #         print(f"{i}: {path_str}; d={D2[i-1]}")
 
-    else:
-        print('\nGrafo 2 tem ciclo negativo\n')
+    # else:
+    #     print('\nGrafo 2 tem ciclo negativo\n')

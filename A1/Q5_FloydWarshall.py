@@ -33,7 +33,7 @@ def matrizFW(D: list, k: int, quantVertices: int) -> list:
 
 if __name__ == "__main__":
     g = Graph()
-    g.Read('GraphTest2.txt')
+    g.Read('fln_pequena.net')
     D, quantVertices = floydWarshall(g)         #é retornada a matriz e a quantidade de vértices
     for i in range(quantVertices):              #intera-se sobre a quantidade de vertices para a impressão
         print(f'{i+1}:{",".join(map(str, D[i]))}')  #cada vértice é somado um (pois começa em 0 e os vértices começam em 1) e pego cada linha de D
