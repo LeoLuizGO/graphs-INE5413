@@ -37,7 +37,7 @@ def BuscaLargura(graph: Graph, s: int):
 
 if __name__ == '__main__':
     g = Graph()
-    g.Read('GraphTest2.txt')
+    g.Read('fln_pequena.net')
     D, A = BuscaLargura(g, 1)
     print(f'D = {D}')
     print(f'A = {A}\n')

@@ -39,7 +39,7 @@ def BellmanFord(graph: Graph, s: int) -> tuple():
 if __name__ == "__main__":
     g1 = Graph()
     g2 = Graph()
-    g1.Read('GraphTest1.txt')  # grafo sem ciclos negativos
+    g1.Read('fln_pequena.net')  # grafo sem ciclos negativos
     g2.Read('GraphTest3.txt')  # grafo com ciclos negativos
     cycle1, D1, A1 = BellmanFord(g1, 6)
     cycle2, D2, A2 = BellmanFord(g2, 1)

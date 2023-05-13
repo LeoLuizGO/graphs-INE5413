@@ -62,7 +62,7 @@ def buscarSubcicloEuleriano(graph: Graph, v: int, C: list) -> list:
 
 if __name__ == '__main__':
     g = Graph()
-    g.Read('GraphTest2.txt')
+    g.Read('fln_pequena.net')
     cycle, cycleList = CicloEuleriano(g)
 
     if cycle: 
