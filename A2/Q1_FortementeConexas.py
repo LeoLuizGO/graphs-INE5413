@@ -26,7 +26,7 @@ def ComponentesFortementeConexas(graph: Graph):
     for vert in range(vertices):
         if Cv[vert] == False:
             Cv = [False for _ in range(graph.GetVerticesQuantity())]
-            Fv = [0 for _ in range(graph.GetVerticesQuantity())]
+            Fv = [float('inf') for _ in range(graph.GetVerticesQuantity())]
             Iv = [float('inf') for _ in range(graph.GetVerticesQuantity())]
             s = vert + 1
             Ct, Cv, Iv, Fv = DFS(graph, s, Ct, False, Cv, Iv, Fv)
@@ -36,7 +36,7 @@ def ComponentesFortementeConexas(graph: Graph):
     PosFv = Fv.copy()
     OrdFv = quickSortHelper(OrdFv, 0, len(OrdFv)-1)
     
-    Fv = [0 for _ in range(graph.GetVerticesQuantity())]
+    Fv = [float('inf') for _ in range(graph.GetVerticesQuantity())]
     Iv = [float('inf') for _ in range(graph.GetVerticesQuantity())]
 
     for i in range(len(OrdFv), 0, -1):
