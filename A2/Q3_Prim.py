@@ -18,6 +18,7 @@ def Prim(graph: Graph):
         Kv.append(float('inf'))
         Ev.append(None)
         Ev.append(None)
+
     Kv[0] = 0
     while False in Qv:
         min = -1
@@ -25,14 +26,16 @@ def Prim(graph: Graph):
             if min == -1 and not(Qv[i]):
                 min = Kv[i]
                 u = i+1
-                break
-            elif min < Kv[i] and not(Qv[i]):
+            elif min > Kv[i] and not(Qv[i]):
                 min = Kv[i]
                 u = i+1
+
         uVert = graph.GetLabel(u)
         Qv[u-1] = True
+
         for neighbor in graph.GetNeighborhood(uVert):
             weight = graph.GetWeight(uVert, neighbor)
+            
             if weight < Kv[graph.GetIndex(neighbor)-1] and [neighbor, uVert] not in Ev: 
                 Ev[(graph.GetIndex(uVert)-1)*2] = [neighbor, uVert]
                 Ev[(graph.GetIndex(uVert)*2)-1] = [uVert, neighbor]
@@ -42,6 +45,7 @@ def Prim(graph: Graph):
         # print("Av: ", Av)
         # print("Qv: ", Qv)
         # print("Ev: ", Ev)
+
         sumKv = sum(Kv)
     return sumKv, Av
 
