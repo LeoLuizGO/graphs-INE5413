@@ -3,6 +3,7 @@
 # Lucas Gusmão Valduga (21103505)
 # Questão 1 
 
+from time import sleep
 from Representacao import Graph
 
 def BFS_adapted(g: Graph, parent: list, quantityV: int) -> bool:
@@ -25,7 +26,14 @@ def BFS_adapted(g: Graph, parent: list, quantityV: int) -> bool:
                     return True
     return False
 
-def edmondsKarp(g):
+def weightValue(u: int, v: int, path_flow: int):
+    weight = g.GetWeight(g.GetLabel(v), g.GetLabel(u))
+    if weight == float("inf"):
+        return path_flow
+    else:
+        return path_flow + weight
+
+def edmondsKarp(g: Graph):
     quantityV = g.GetVerticesQuantity()
     parent = [-1]*quantityV
 
@@ -33,12 +41,32 @@ def edmondsKarp(g):
 
     while BFS_adapted(g, parent, quantityV):
         path_flow = float("Inf")
+        print("parent", parent)
+        s = g.GetIndex("t")
+        while (s != g.GetIndex("s")):
+            path_flow = min(path_flow, g.GetWeight(g.GetLabel(s), g.GetLabel(parent[s-1])))
+            print("path_flow", path_flow)
+            print(parent)
+            print("s", s)
+            sleep(3)
+            s = parent[s-1]
         
-        pass
-    pass
+        max_flow += path_flow
+
+        v = g.GetIndex("t")
+        while (v != g.GetIndex("s")):
+            u = parent[v-1]
+            g.SetWeight(g.GetLabel(u), g.GetLabel(v), (g.GetWeight(g.GetLabel(u), g.GetLabel(v))-path_flow))  
+            g.SetWeight(g.GetLabel(v), g.GetLabel(u), weightValue(u, v, path_flow))
+            v = parent[v-1]
+            
+    return max_flow
 
 if __name__ == '__main__':
     g = Graph()
     g.Read('fluxo_maximo_aula.net')
+    #print(g.GetIndex("t"))
+    #parent = [-1]*g.GetVerticesQuantity()
+    print(edmondsKarp(g))
     #color, colors = welshPowell(g)
     #https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/

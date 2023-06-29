@@ -49,6 +49,10 @@ class Graph():
             
         return weight
     
+    def SetWeight(self, vertexU: str, vertexV: str, weight: float):
+        self.adjList[vertexU]['neighborhood'][vertexV] = weight
+        return
+
     def SetGf(self):
         pass
     
