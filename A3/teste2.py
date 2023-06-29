@@ -60,12 +60,13 @@ class Graph:
 		max_flow = 0 # There is no flow initially
 
 		# Augment the flow while there is path from source to sink
-		while self.BFS(source, sink, parent) :
+		while self.BFS(source, sink, parent):
 
 			# Find minimum residual capacity of the edges along the
 			# path filled by BFS. Or we can say find the maximum flow
 			# through the path found.
 			path_flow = float("Inf")
+			print(parent)
 			s = sink
 			while(s != source):
 				path_flow = min (path_flow, self.graph[parent[s]][s])
