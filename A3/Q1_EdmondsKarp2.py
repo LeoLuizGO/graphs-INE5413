@@ -3,7 +3,7 @@
 # Lucas Gusmão Valduga (21103505)
 # Questão 1 
 
-from time import sleep
+# from time import sleep
 from Representacao import Graph
 
 def BFS_adapted(g: Graph, parent: list, quantityV: int) -> bool:
@@ -14,10 +14,12 @@ def BFS_adapted(g: Graph, parent: list, quantityV: int) -> bool:
     V[g.GetIndex("s")-1] = True
 
     while Q:
-        u = Q.pop()
+        u = Q.pop(0)
         for neighbors in g.GetNeighborhood(g.GetLabel(u)):
             ind = g.GetIndex(neighbors)
-            if V[ind-1] == False and g.GetWeight(u, ind) > 0:
+            if V[ind-1] == False and g.GetWeight(g.GetLabel(u), g.GetLabel(ind)) > 0:
+                # print("val: ", g.GetWeight(g.GetLabel(u), g.GetLabel(ind)))
+                # print("ind: ", ind)
                 Q.append(g.GetIndex(neighbors))
                 V[ind-1] = True
                 parent[ind-1] = u
@@ -41,14 +43,17 @@ def edmondsKarp(g: Graph):
 
     while BFS_adapted(g, parent, quantityV):
         path_flow = float("Inf")
-        print("parent", parent)
+        # print("parent", parent)
         s = g.GetIndex("t")
         while (s != g.GetIndex("s")):
-            path_flow = min(path_flow, g.GetWeight(g.GetLabel(s), g.GetLabel(parent[s-1])))
-            print("path_flow", path_flow)
-            print(parent)
-            print("s", s)
-            sleep(3)
+            # print("parent[s-1]: ", parent[s-1])
+            path_flow = min(path_flow, (g.GetWeight(g.GetLabel(parent[s-1]), g.GetLabel(s))))
+            # print("miN", min(path_flow, (g.GetWeight(g.GetLabel(parent[s-1]), g.GetLabel(s)))))
+            # print("cam", (g.GetWeight(g.GetLabel(parent[s-1]), g.GetLabel(s))))
+            # print("path_flow", path_flow)
+            # print(parent)
+            # print("s", s)
+            # sleep(3)
             s = parent[s-1]
         
         max_flow += path_flow
@@ -67,6 +72,4 @@ if __name__ == '__main__':
     g.Read('fluxo_maximo_aula.net')
     #print(g.GetIndex("t"))
     #parent = [-1]*g.GetVerticesQuantity()
-    print(edmondsKarp(g))
-    #color, colors = welshPowell(g)
-    #https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/
+    print("Fluxo Máximo é: ", edmondsKarp(g))

@@ -37,6 +37,8 @@ class Graph:
 			# visited and enqueue it
 			for ind, val in enumerate(self.graph[u]):
 				if visited[ind] == False and val > 0:
+					print("val:", val)
+					print("ind:", ind)
 					# If we find a connection to the sink node,
 					# then there is no point in BFS anymore
 					# We just have to set its parent and can return true
@@ -70,9 +72,11 @@ class Graph:
 			s = sink
 			while(s != source):
 				path_flow = min (path_flow, self.graph[parent[s]][s])
+				print("selfgraph[s]: ", self.graph[parent[s]][s])
 				s = parent[s]
 
 			# Add path flow to overall flow
+			print("path_flow: ", path_flow)
 			max_flow += path_flow
 
 			# update residual capacities of the edges and reverse edges

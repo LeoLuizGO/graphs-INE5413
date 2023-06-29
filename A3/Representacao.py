@@ -52,9 +52,6 @@ class Graph():
     def SetWeight(self, vertexU: str, vertexV: str, weight: float):
         self.adjList[vertexU]['neighborhood'][vertexV] = weight
         return
-
-    def SetGf(self):
-        pass
     
     def Read(self, file) -> None:
         with open(file, 'r', encoding='utf-8') as f:
